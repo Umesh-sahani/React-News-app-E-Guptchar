@@ -16,25 +16,25 @@ export default class Navbar extends Component {
                                     <a className="nav-link active" aria-current="page" href="/">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">general</a>
+                                    <a className="nav-link" href="/general">General</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">business</a>
+                                    <a className="nav-link" href="/business">Business</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">entertainment</a>
+                                    <a className="nav-link" href="/entertainment">Entertainment</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">health</a>
+                                    <a className="nav-link" href="/health">Health</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">science</a>
+                                    <a className="nav-link" href="/science">Science</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">sports</a>
+                                    <a className="nav-link" href="/sports">Sports</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/">technology</a>
+                                    <a className="nav-link" href="/technology">Technology</a>
                                 </li>
 
                             </ul>
