@@ -75,16 +75,42 @@ export default class NewsBody extends Component {
         console.log("i am news  constructor");
         this.state = {
             articles: this.articles,
-            loading: false
+            loading: false,
+            page: 1
         }
     }
-    async componentDidMount(){
+    async componentDidMount() {
         console.log('cdm');
-        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260";
+        let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=1&pageSize=6";
         let data = await fetch(url);
         let parseData = await data.json(data);
         // console.log(parseData)
-        this.setState({articles: parseData.articles})
+        this.setState({ articles: parseData.articles, totalResults: parseData.totalResults })
+
+    }
+    handlePrevClick = async () => {
+        console.log("Prev");
+        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page - 1}&pageSize=6`;
+        let data = await fetch(url);
+        let parseData = await data.json(data);
+        this.setState({
+            page: this.state.page - 1,
+            articles: parseData.articles
+        })
+    }
+    handleNextClick = async () => {
+        console.log("Next");
+        if (this.state.page + 1 > Math.ceil(this.state.totalResults / 6)) {
+            console.log("no more data")
+        } else {
+            let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page + 1}&pageSize=6`;
+            let data = await fetch(url);
+            let parseData = await data.json(data);
+            this.setState({
+                page: this.state.page + 1,
+                articles: parseData.articles
+            })
+        }
 
     }
 
@@ -99,10 +125,15 @@ export default class NewsBody extends Component {
                                 {this.state.articles.map((element) => {
                                     // console.log(element)
                                     return <div className="col-md-4 my-3" key={element.url}>
-                                        <NewsBox title={element.title?element.title:"Title Not Available"} description={element.description?element.description.slice(0,150):"Descipriton not available"} imageUrl={element.urlToImage ? element.urlToImage : "https://images.hindustantimes.com/tech/img/2021/11/03/1600x900/James_Webb_Space_Telescope_ESA_1635954655087_1635954696732.jpg"} newsUrl={element.url} />
+                                        <NewsBox title={element.title ? element.title : "Title Not Available"} description={element.description ? element.description.slice(0, 150) : "Descipriton not available"} imageUrl={element.urlToImage ? element.urlToImage : "https://images.hindustantimes.com/tech/img/2021/11/03/1600x900/James_Webb_Space_Telescope_ESA_1635954655087_1635954696732.jpg"} newsUrl={element.url} />
                                     </div>
                                 })}
-
+                            </div>
+                            <hr />
+                            <div className="d-flex justify-content-between">
+                                <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr;&nbsp;Previous</button>
+                                
+                                <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / 6)} type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next&nbsp;&rarr;</button>
                             </div>
                         </div>
                     </div>
