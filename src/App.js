@@ -1,15 +1,12 @@
 import Navbar from "./components/Navbar";
-import NewsBody from "./components/NewsBody";
+import News from "./components/News";
 
 
 function App() {
   return (
     <>
       <Navbar/>
-      <NewsBody/>
-      <hr/>
-      <NewsBody/>
-  
+      <News/>     
     </>
   );
 }
