@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import NewsBox from './NewsBox'
 import Spinner from './Spinner'
 
-export default class NewsBody extends Component {
+export default class News extends Component {
     articles = [
         {
             "source": {
@@ -82,8 +82,8 @@ export default class NewsBody extends Component {
     }
     async componentDidMount() {
         console.log('cdm');
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=1&pageSize=${this.props.pageSize}`;
-        this.setState({loading: true})
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=1&pageSize=${this.props.pageSize}`;
+        this.setState({loading: true});
         let data = await fetch(url);
         let parseData = await data.json(data);
         // console.log(parseData)
@@ -92,7 +92,7 @@ export default class NewsBody extends Component {
     }
     handlePrevClick = async () => {
         console.log("Prev");
-        let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         this.setState({loading: true})
         let data = await fetch(url);
         let parseData = await data.json(data);
@@ -105,7 +105,7 @@ export default class NewsBody extends Component {
     handleNextClick = async () => {
         console.log("Next");
         if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
-            let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+            let url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
             this.setState({loading: true})
             let data = await fetch(url);
             let parseData = await data.json(data);
@@ -128,7 +128,6 @@ export default class NewsBody extends Component {
                         <div className="card-body">
                             <div className="row">
                                 {!this.state.loading && this.state.articles.map((element) => {
-                                    // console.log(element)
                                     return <div className="col-md-4 my-3" key={element.url}>
                                         <NewsBox title={element.title ? element.title : "Title Not Available"} description={element.description ? element.description.slice(0, 150) : "Descipriton not available"} imageUrl={element.urlToImage ? element.urlToImage : "https://images.hindustantimes.com/tech/img/2021/11/03/1600x900/James_Webb_Space_Telescope_ESA_1635954655087_1635954696732.jpg"} newsUrl={element.url} />
                                     </div>
