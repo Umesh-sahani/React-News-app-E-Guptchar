@@ -127,7 +127,7 @@ export default class NewsBody extends Component {
                         {this.state.loading && <Spinner />}
                         <div className="card-body">
                             <div className="row">
-                                {!this.state.loading && this.state.articles.map((element) => {
+                                {this.state.articles.map((element) => {
                                     // console.log(element)
                                     return <div className="col-md-4 my-3" key={element.url}>
                                         <NewsBox title={element.title ? element.title : "Title Not Available"} description={element.description ? element.description.slice(0, 150) : "Descipriton not available"} imageUrl={element.urlToImage ? element.urlToImage : "https://images.hindustantimes.com/tech/img/2021/11/03/1600x900/James_Webb_Space_Telescope_ESA_1635954655087_1635954696732.jpg"} newsUrl={element.url} />
