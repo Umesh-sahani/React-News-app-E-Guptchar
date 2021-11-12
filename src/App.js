@@ -6,11 +6,8 @@ function App() {
   return (
     <>
       <Navbar/>
-<<<<<<< HEAD
-      <News pageSize={6} country="in" category="science"/>     
-=======
-      <News pageSize={6} category={'general'}/>     
->>>>>>> dev
+      <News pageSize={6} country="in" category="general"/>     
+          
     </>
   );
 }
