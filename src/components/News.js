@@ -32,15 +32,19 @@ export default class News extends Component {
         document.title = `${this.CapitalizeFirstLetter(this.props.category)} - E-Guptchar || Umesh`;
     }
     async UpdateNews() {
+        this.props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({ loading: true });
         let data = await fetch(url);
+        this.props.setProgress(30);
         let parseData = await data.json(data);
+        this.props.setProgress(75);
         this.setState({
             articles: parseData.articles,
             totalResults: parseData.totalResults,
             loading: false
         })
+        this.props.setProgress(100);
     }
     async componentDidMount() {
         console.log('cdm');
@@ -67,8 +71,8 @@ export default class News extends Component {
             <>
 
 
-                <h4 className="text-center text-white bg-secondary p-2 mt-3">E-Guptchar - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</h4>
-                {/* {this.state.loading && <Spinner />} */}
+                <h5 className="text-center text-white bg-secondary p-2 mt-2 mx-1 rounded">E-Guptchar - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</h5>
+                
 
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
@@ -76,7 +80,7 @@ export default class News extends Component {
                     hasMore={this.state.articles.length !== this.state.totalResults}
                     loader={<Spinner />}
                 >
-                    <div className="container-fluid px-5">
+                    <div className="container-fluid ">
                         <div className="row">
                             {this.state.articles.map((element) => {
                                 return <div className="col-md-4 my-2" key={element.url}>
