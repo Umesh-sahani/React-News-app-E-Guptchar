@@ -4,16 +4,6 @@ import News from "./components/News";
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-<<<<<<< HEAD
-function App() {
-  return (
-    <>
-      <Navbar/>
-      <News pageSize={6} country="in" category="general"/>     
-          
-    </>
-  );
-=======
 export default class App extends Component {
   pageSize = 6;
   render() {
@@ -46,6 +36,5 @@ export default class App extends Component {
       </>
     )
   }
->>>>>>> dev
 }
 
