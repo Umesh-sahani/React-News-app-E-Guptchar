@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from "react-router-dom";
-
+import Clock from './Clock';
 export default class Navbar extends Component {
     render() {
         return (
@@ -35,8 +35,12 @@ export default class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/technology">Technology</Link>
                                 </li>
+                                <li className="nav-item">
+                                <p className="text-white nav-link m-0"><Clock/></p>
+                                </li>
 
                             </ul>
+                            
                             
                         </div>
                     </div>
