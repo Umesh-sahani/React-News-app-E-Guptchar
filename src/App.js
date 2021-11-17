@@ -17,12 +17,10 @@ export default class App extends Component {
       <>
         <Router>
           <LoadingBar
-          shadow= {true}
-          
+            shadow={true}
             height={3}
             color='#f11946'
             progress={this.state.progress}
-
           />
           <Navbar />
 
