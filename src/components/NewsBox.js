@@ -13,8 +13,8 @@ export default class NewsBox extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{title}</h5>
                         <p className="card-text">{description}...</p>
-                        <p className="card-text"><small className="text-black rounded bg-warning p-1">{author ? `By ${author}` : ''}  {new Date(`${publishedAt}`).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })}</small></p>
-                        <a href={newsUrl} target="_blank" rel="noreferrer" className="btn btn-sm btn-dark">Read More</a>
+                        <p className="card-text intalic"><small className="text-danger">{author ? `By ${author}` : ''}  {new Date(`${publishedAt}`).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })}</small></p>
+                        <a href={newsUrl} target="_blank" rel="noreferrer" className="btn btn-sm btn-warning">Read More</a>
                     </div>
                 </div>
             </>
