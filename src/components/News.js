@@ -51,8 +51,8 @@ export default class News extends Component {
         this.UpdateNews();
 
     }
-   
-   
+
+
     fetchMoreData = async () => {
         this.setState({ page: this.state.page + 1 });
         const url = `https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=ec2115d017b3450b82eb5f9e083bd260&page=${this.state.page}&pageSize=${this.props.pageSize}`;
@@ -69,11 +69,7 @@ export default class News extends Component {
     render() {
         return (
             <>
-
-
                 <h5 className="text-center text-white bg-secondary p-2 mt-2 mx-1 rounded">E-Guptchar - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</h5>
-                
-
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
                     next={this.fetchMoreData}
@@ -91,7 +87,7 @@ export default class News extends Component {
                     </div>
                 </InfiniteScroll>
                 <hr />
-                
+
 
 
             </>
